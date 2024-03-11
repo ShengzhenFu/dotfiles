@@ -38,3 +38,14 @@ zplug "plugins/z",   from:oh-my-zsh
 zplug "plugins/copyfile",   from:oh-my-zsh
 zplug "plugins/copypath",   from:oh-my-zsh
 ```
+
+## Nvim short cuts i find useful
+
+### copy all content to clipboard
+ggVGy
+
+### pop up a terminal in Nvim and hide it
+Space + fT
+Esc + Ctrl \ + Ctrl n + : q
+
+
