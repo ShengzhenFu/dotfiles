@@ -6,6 +6,7 @@ Refer to the [documentation](https://lazyvim.github.io/installation) to get star
 
 ## trash instead of direct remove in Neo-tree
 There is a known issue that if you press d to remove file in Neo-tree, it will be immediately removed and can't be restored. To fix this issue i use trash to put the file to ~/.Trash
+
 add below lines to init.lua
 
 ```lua
