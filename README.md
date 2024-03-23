@@ -1,8 +1,11 @@
-## My personal dotfiles of Tmux and NVIM
+## Everything on Terminal
+
+
+### My personal dotfiles of Tmux and NVIM
 
 Please backup your own config, so you can revert back in case needed.
 
-TO-DO: add video explain my workflow with Tmux and NVIM
+TO-DO: add video explain the power of Terminal with Tmux, NVIM and more...
 
 ### Oh My Zsh
 ```bash
@@ -38,6 +41,11 @@ zplug "plugins/z",   from:oh-my-zsh
 zplug "plugins/copyfile",   from:oh-my-zsh
 zplug "plugins/copypath",   from:oh-my-zsh
 ```
+## Window manager
+```bash
+brew install --cask amethyst
+```
+
 
 ## Nvim short cuts i find useful
 
@@ -46,6 +54,7 @@ ggVGy
 
 ### pop up a terminal in Nvim and hide it
 Space + fT
+
 Esc + Ctrl \ + Ctrl n + : q
 
 
