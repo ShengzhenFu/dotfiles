@@ -40,6 +40,13 @@ zplug "plugins/jsontools",   from:oh-my-zsh
 zplug "plugins/z",   from:oh-my-zsh
 zplug "plugins/copyfile",   from:oh-my-zsh
 zplug "plugins/copypath",   from:oh-my-zsh
+zplug "plugins/emoji",  from:"oh-my-zsh"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2, on:"zsh-users/zsh-autosuggestions"
+zplug "zdharma/fast-syntax-highlighting", as:"plugin", defer:2
+zplug "plugins/emoji-clock",  from:"oh-my-zsh"
+zplug "plugins/git",  from:"oh-my-zsh"
 ```
 ## Window manager
 ```bash
