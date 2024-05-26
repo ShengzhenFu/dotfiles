@@ -91,10 +91,10 @@ please note it only support WSL version 2, you can follow above to upgrade the W
 
 2. Once installed, start Docker Desktop from the Windows Start menu, then select the Docker icon from the hidden icons menu of your taskbar. Right-click the icon to display the Docker commands menu and select "Settings".
 ####General
-![General Settings](docker-desktop-general-settings-wsl.png "Docker General Settings")
+![General Settings](docker-desktop-general-settings-wsl.PNG "Docker General Settings")
 
 ####Resources
-![Docker WSL](docker-desktop-wsl-integration.png "Docker Desktop WSL integration")
+![Docker WSL](docker-desktop-wsl-integration.PNG "Docker Desktop WSL integration")
 
 Once above is done. you should be able to use docker on both Windows and WSL Ubuntu, but in WSL Ubuntu it will ask you to use Sudo because lack of permissions, now let's fix it by following commands
 ```bash
