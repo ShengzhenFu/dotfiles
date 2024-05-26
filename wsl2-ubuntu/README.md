@@ -83,3 +83,22 @@ Install Powerlevel10k ZSH plugin
 zinit ice depth=1; zinit ligt romkatv/powerlevel10kh
 ```
 follow the instructions to setup Powerlevel10k according to your preference
+
+### Install Docker on both Windows and Subsystem Ubuntu
+please note it only support WSL version 2, you can follow above to upgrade the WSL subsystem to version 2 before get start with Docker
+
+1. Download Docker Desktop and follow the installation instructions.
+
+2. Once installed, start Docker Desktop from the Windows Start menu, then select the Docker icon from the hidden icons menu of your taskbar. Right-click the icon to display the Docker commands menu and select "Settings".
+####General
+![General Settings](docker-desktop-general-settings-wsl.png "Docker General Settings")
+
+####Resources
+![Docker WSL](docker-desktop-wsl-integration.png "Docker Desktop WSL integration")
+
+Once above is done. you should be able to use docker on both Windows and WSL Ubuntu, but in WSL Ubuntu it will ask you to use Sudo because lack of permissions, now let's fix it by following commands
+```bash
+sudo usermod -aG docker YourUserName
+newgrp docker
+```
+
