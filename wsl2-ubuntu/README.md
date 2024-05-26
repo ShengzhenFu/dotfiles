@@ -90,6 +90,8 @@ please note it only support WSL version 2, you can follow above to upgrade the W
 1. Download Docker Desktop and follow the installation instructions.
 
 2. Once installed, start Docker Desktop from the Windows Start menu, then select the Docker icon from the hidden icons menu of your taskbar. Right-click the icon to display the Docker commands menu and select "Settings".
+
+
 ####General
 ![General Settings](docker-desktop-general-settings-wsl.PNG "Docker General Settings")
 
