@@ -92,10 +92,10 @@ please note it only support WSL version 2, you can follow above to upgrade the W
 2. Once installed, start Docker Desktop from the Windows Start menu, then select the Docker icon from the hidden icons menu of your taskbar. Right-click the icon to display the Docker commands menu and select "Settings".
 
 
-####General
+**General
 ![General Settings](docker-desktop-general-settings-wsl.PNG "Docker General Settings")
 
-####Resources
+**Resources
 ![Docker WSL](docker-desktop-wsl-integration.PNG "Docker Desktop WSL integration")
 
 Once above is done. you should be able to use docker on both Windows and WSL Ubuntu, but in WSL Ubuntu it will ask you to use Sudo because lack of permissions, now let's fix it by following commands
@@ -104,3 +104,45 @@ sudo usermod -aG docker YourUserName
 newgrp docker
 ```
 
+### Move WSL distro to another Disk drive
+The default location of the WSL is in C drive, however there are chances the C drive size is limited and some people may  want to use for example D drive or E drive for WSL, now you can follow below steps to achieve this.
+
+Pre-requisites
+Inside WSL distro, update below content, make sure to change the user value to meet your case
+```bash
+❯ vim /etc/wsl.conf
+[boot]
+systemd=true
+[user]
+default=YourUserName
+```
+
+```bash
+# Please do it on Windows powershell or cmdline
+# In my case i want to move the WSL to D drive
+# create temp dir to save the vhd file
+mkdir -p D:/WSL/tmp
+
+# create dir for new distro going to be imported
+mkdir -p D:/WSL/Ubuntu
+cd WSL
+
+# stop the original distro
+wsl --shutdown Ubuntu-22.04
+
+# export WSL distro to the temp dir
+wsl --export Ubuntu-22.04 .\tmp\ubuntu-vdisk.vhdx --vhd
+wsl -l -v
+
+# create a new distro by importing from the vdhx
+wsl --import Ubuntu D:\WSL\Ubuntu .\tmp\ubuntu-vdisk.vhdx --vhd
+
+# start the imported distro
+wsl ~ -d Ubuntu -u YourUserName
+
+# check if the imported distro running good, if yes, then let's remove the original one
+wsl --unregister Ubuntu-22.04
+
+# reconfigure Docker desktop to integrate with new distro
+
+```
