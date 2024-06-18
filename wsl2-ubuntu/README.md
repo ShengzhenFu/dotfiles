@@ -53,6 +53,10 @@ Now we can set default version to 2 via below command
 I strongly recommand to install Windows Terminal, because it's a good terminal to manage Linux subsystems.
 https://learn.microsoft.com/en-us/windows/terminal/install
 
+## Install ZSH
+```bash
+sudo apt install zsh
+```
 
 ## Setup ZSH on Ubuntu
 the default shell in Ubuntu is bash, add below lines below the first line in ~/.bashrc to switch to ZSH
@@ -80,9 +84,17 @@ zinit light zsh-users/zsh-autosuggestions
 ```
 Install Powerlevel10k ZSH plugin
 ```bash
-zinit ice depth=1; zinit ligt romkatv/powerlevel10kh
+zinit ice depth=1; zinit ligt romkatv/powerlevel10k
 ```
 follow the instructions to setup Powerlevel10k according to your preference
+
+### Install Neovim on Ubuntu
+```bash
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+sudo tar -C /opt -xzf nvim-linux64.tar.gz
+# add below line to ~/.zshrc
+export PATH="$PATH:/opt/nvim-linux64/bin"
+```
 
 ### Install Docker on both Windows and Subsystem Ubuntu
 please note it only support WSL version 2, you can follow above to upgrade the WSL subsystem to version 2 before get start with Docker
