@@ -1,4 +1,4 @@
-# A guide to setup Ubuntu 22.04 on Windows 10 WSL
+# A guide to setup Ubuntu 24.04 on Windows 10 WSL
 
 Enable Windows Subsystem Linux
 run below in Powershell as Administrator
@@ -33,7 +33,7 @@ openSUSE-Tumbleweed                    openSUSE Tumbleweed
 
 Choose one distribution from above and install it
 ```bash
-> wsl install -d Ubuntu-22.04
+> wsl install -d Ubuntu-24.04
 > wsl -l -v
 ```
 Now that the Ubuntu has been installed, you can launch it from the applications, 
@@ -42,7 +42,7 @@ And follow the instructions to setup a user and password for the Ubuntu subsyste
 
 If the version is 1, we can run below to upgrade to version 2
 ```bash
-wsl --set-version Ubuntu-22.04 2
+wsl --set-version Ubuntu-24.04 2
 ```
 The linux will be restarted for version upgrade.
 Now we can set default version to 2 via below command
@@ -94,6 +94,8 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.
 sudo tar -C /opt -xzf nvim-linux64.tar.gz
 # add below line to ~/.zshrc
 export PATH="$PATH:/opt/nvim-linux64/bin"
+# gcc, required by NVIM tree-sitter
+sudo apt install gcc
 ```
 
 ### Install Docker on both Windows and Subsystem Ubuntu
@@ -142,6 +144,9 @@ cd WSL
 # stop the original distro
 wsl --shutdown Ubuntu-22.04
 
+# please make sure you update wsl to version 2 before export distro
+wsl --update
+
 # export WSL distro to the temp dir
 wsl --export Ubuntu-22.04 .\tmp\ubuntu-vdisk.vhdx --vhd
 wsl -l -v
@@ -151,6 +156,9 @@ wsl --import Ubuntu D:\WSL\Ubuntu .\tmp\ubuntu-vdisk.vhdx --vhd
 
 # start the imported distro
 wsl ~ -d Ubuntu -u YourUserName
+
+# set default distro to Ubuntu
+wsl --set-default Ubuntu
 
 # check if the imported distro running good, if yes, then let's remove the original one
 wsl --unregister Ubuntu-22.04
