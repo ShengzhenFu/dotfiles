@@ -27,6 +27,8 @@ sudo pacman -S --needed zsh-syntax-highlighting
 
 sudo pacman -S --needed fcitx5-chinese-addons
 sudo pacman -S --needed fcitx5-im fcitx5-pinyin-zhwiki
+sudo pacman -S --needed fcitx5-configtool
+# run fcitx5-configtool to add Chinese input pinyin
 # add 1 line in hyprland.conf
 exec-once=fcitx5 --replace -d
 # add below lines to /etc/environment
@@ -35,6 +37,8 @@ QT_IM_MODULES=fcitx5
 SDL_IM_MODULES=fcitx5
 XMODIFIERS=@im=fcitx5
 #################################
+
+# auto mount U disk
 sudo pacman -S --needed udiskie
 
 ```
