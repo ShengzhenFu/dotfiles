@@ -1,0 +1,26 @@
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+alias clashui='docker run -d --restart always -p 80:80 --name metacubexd ghcr.io/metacubex/metacubexd'
+alias clash='cd /home/shengzhen/.config/mihomo; ./clash-linux-compatible'
+alias chrome='google-chrome-stable --proxy-server="http://127.0.0.1:7890;https://127.0.0.1:7890"'
+
+alias wbdark= 'waybar -c /home/shengzhen/.config/waybar/themes/ml4w/config -s /home/shengzhen/.config/waybar/themes/ml4w/dark/style.css>/dev/null 2>&1 &'
+alias wblight='waybar -c /home/shengzhen/.config/waybar/themes/ml4w/config -s /home/shengzhen/.config/waybar/themes/ml4w/light/style.css>/dev/null 2>&1 &'
+
+alias vz='nvim ~/.config/zshrc/'
+alias szh='source ~/.zshrc'
+
+alias lock='hyprlock'
+alias poweroff='systemctl poweroff'
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+alias cam='vlc v4l2://:input-slave=alsa://:v4l-vdev="/dev/video0"'
