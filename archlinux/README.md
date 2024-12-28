@@ -1,4 +1,21 @@
+## zsh
+
+```bash
+# install ohmyzsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# install zsh plugin
+# sudo pacman -S --needed zsh-autosuggestions
+# sudo pacman -S --needed zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
+
+sed -i 's/plugins=(git)/plugins=(git sudo archlinux zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)/g' ~/.zshrc
+```
+
 ## tmux
+
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # add below lines to the bottom of ~/.tmux.conf
@@ -13,18 +30,15 @@ run '~/.tmux/plugins/tpm/tpm'
 
 
 ## audio
+
 ```bash
 sudo pacman -S --needed pulseaudio pulseaudio-alsa
 systemctl --user start pulseaudio
 ```
 
-
-sudo pacman -S --needed zsh-autosuggestions
-sudo pacman -S --needed zsh-syntax-highlighting
-
 ## Chinese input
-```bash
 
+```bash
 sudo pacman -S --needed fcitx5-chinese-addons
 sudo pacman -S --needed fcitx5-im fcitx5-pinyin-zhwiki
 sudo pacman -S --needed fcitx5-configtool
@@ -40,9 +54,10 @@ XMODIFIERS=@im=fcitx5
 
 # auto mount U disk
 sudo pacman -S --needed udiskie
-
 ```
+
 ## unmute audio
+
 ```bash
 sudo pacman -S alsa-utils
 amixer sset Master unmuter
@@ -74,6 +89,7 @@ cd ~/.config/mihomo
 ## obs
 
 https://gist.github.com/brunoanc/2dea6ddf6974ba4e5d26c3139ffb7580#install-pipewire-and-friends
+
 ```bash
 sudo pacman -S pipewire wireplumber 
 yay -S xdg-desktop-portal-hyprland-git
