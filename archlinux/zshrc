@@ -10,17 +10,27 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+# alias vz='nvim ~/.config/zshrc/'
+
+# ----------------------------------------------------
+# My personal Aliases
+# ----------------------------------------------------
 alias clashui='docker run -d --restart always -p 80:80 --name metacubexd ghcr.io/metacubex/metacubexd'
-alias clash='cd /home/shengzhen/.config/mihomo; ./clash-linux-compatible'
+alias clash='cd /home/shengzhen/.config/mihomo; ./mihomo-linux-amd64-compatible-v1.19.0'
 alias chrome='google-chrome-stable --proxy-server="http://127.0.0.1:7890;https://127.0.0.1:7890"'
+alias setproxy='export http_proxy=http://127.0.0.1:7890; export https_proxy=http://127.0.0.1:7890; export all_proxy=http://127.0.0.1:7890'
 
 alias wbdark= 'waybar -c /home/shengzhen/.config/waybar/themes/ml4w/config -s /home/shengzhen/.config/waybar/themes/ml4w/dark/style.css>/dev/null 2>&1 &'
 alias wblight='waybar -c /home/shengzhen/.config/waybar/themes/ml4w/config -s /home/shengzhen/.config/waybar/themes/ml4w/light/style.css>/dev/null 2>&1 &'
 
-alias vz='nvim ~/.config/zshrc/'
+alias vz='nvim ~/dotfiles/.config/zshrc'
 alias szh='source ~/.zshrc'
 
 alias lock='hyprlock'
 alias poweroff='systemctl poweroff'
-alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+
 alias cam='vlc v4l2://:input-slave=alsa://:v4l-vdev="/dev/video0"'
+
+alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
+
+alias snapshot='hyprshot -m region'
