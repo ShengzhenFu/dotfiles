@@ -123,6 +123,17 @@ https://docs.github.com/en/enterprise-server@3.12/authentication/connecting-to-g
 ssh-keygen -t ed25519 -C "your_email@example.com"
 git config --global user.email "your_email@example.com"
 git config --global user.name "your_name"
+# verify the connection
+ssh -T git@github.com
+```
+
+if you got github connection timeout error on port 22, you can modify the ssh config to use port 443 instead
+
+```bash
+# add below lines to ~/.ssh/config
+Host github.com
+  Hostname ssh.github.com
+  Port 443
 ```
 
 ## future work
