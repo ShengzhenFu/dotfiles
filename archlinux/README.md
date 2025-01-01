@@ -100,3 +100,17 @@ sudo pacman -S grim slurp
 # add below line to the end of ~/.config/hypr/hyprland.conf
 exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 ```
+
+## camera
+
+```bash
+# works for Dell XPS 9310
+yay -S --needed webcamoid
+```
+
+## audio
+
+```bash
+# works for Dell XPS 9310
+sudo pacman -S --needed sof-firmware sof-tools alsa-ucm-conf
+```
