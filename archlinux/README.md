@@ -114,3 +114,17 @@ yay -S --needed webcamoid
 # works for Dell XPS 9310
 sudo pacman -S --needed sof-firmware sof-tools alsa-ucm-conf
 ```
+
+## setup static ipv4
+suppose your WiFi name is home_wifi_5g (change to the real wifi name)
+the static ip of your PC is 192.168.0.232
+the gateway ip of your network is 192.168.0.3
+the dns ip of your network is 192.168.0.3
+
+```bash
+nmcli con mod home_wifi_5g ipv4.address 192.168.0.232/24
+nmcli con mod home_wifi_5g ipv4.gateway 192.168.0.3
+nmcli con mod home_wifi_5g ipv4.dns 192.168.0.3
+nmcli con mod home_wifi_5g ipv4.method manual
+nmcli con up home_wifi_5g
+```
