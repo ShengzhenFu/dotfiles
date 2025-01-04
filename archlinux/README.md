@@ -124,6 +124,18 @@ sudo systemctl enable docker
 usermod -aG docker $USER
 newgrp docker
 docker info
+
+# use local registry
+sudo mkdir /etc/docker
+
+sudo tee /etc/docker/daemon.json <<- EOF
+{
+  "registry-mirrors": ["https://docker.1panel.live/", "https://docker.m.daocloud.io", "https://noohub.ru", "https://huecker.io", "https://dockerhub.timeweb.cloud"]
+}
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 ```
 
 ## packages
@@ -154,3 +166,4 @@ ssh-keygen -t ed25519 -C your_github_email
 git config --global user.name your_name
 git config --global user.email your_github_email
 ```
+
