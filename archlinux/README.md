@@ -115,6 +115,23 @@ yay -S --needed webcamoid
 sudo pacman -S --needed sof-firmware sof-tools alsa-ucm-conf
 ```
 
+## docker
+
+```bash
+sudo pacman -S --needed docker
+sudo systemctl start docker
+sudo systemctl enable docker
+usermod -aG docker $USER
+newgrp docker
+docker info
+```
+
+## packages
+
+```bash
+yay -S --needed visual-studio-code-bin localsend-bin
+```
+
 ## setup static ipv4
 suppose your WiFi name is home_wifi_5g (change to the real wifi name)
 the static ip of your PC is 192.168.0.232
@@ -127,4 +144,13 @@ nmcli con mod home_wifi_5g ipv4.gateway 192.168.0.3
 nmcli con mod home_wifi_5g ipv4.dns 192.168.0.3
 nmcli con mod home_wifi_5g ipv4.method manual
 nmcli con up home_wifi_5g
+nmcli con show home_wifi_5g
+```
+
+## github
+
+```bash
+ssh-keygen -t ed25519 -C your_github_email
+git config --global user.name your_name
+git config --global user.email your_github_email
 ```
