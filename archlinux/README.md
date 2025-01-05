@@ -28,6 +28,13 @@ set -g @plugin 'tmux-plugins/tmux-yank'
 run '~/.tmux/plugins/tpm/tpm'
 ```
 
+## neovim
+
+```bash
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+
+``
 
 ## audio
 
@@ -142,6 +149,7 @@ sudo systemctl restart docker
 
 ```bash
 yay -S --needed visual-studio-code-bin localsend-bin
+sudo pacman -S yazi ffmpeg p7zip jq poppler fd ripgrep fzf zoxide imagemagick shellcheck
 ```
 
 ## setup static ipv4
