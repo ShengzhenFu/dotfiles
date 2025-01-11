@@ -175,6 +175,13 @@ git config --global user.name your_name
 git config --global user.email your_github_email
 ```
 
+## vscode vim motion
+
+```bash
+# install vim plugin in VScode
+cp ./vscode/settings.json ~/.config/Code/User/
+```
+
 ## rofi-wayland issue
 re-generate locale
 
