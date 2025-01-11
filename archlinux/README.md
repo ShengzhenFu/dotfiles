@@ -148,7 +148,7 @@ sudo systemctl restart docker
 ## packages
 
 ```bash
-yay -S --needed visual-studio-code-bin localsend-bin
+yay -S --needed visual-studio-code-bin localsend-bin caffeinate
 sudo pacman -S yazi ffmpeg p7zip jq poppler fd ripgrep fzf zoxide imagemagick shellcheck
 ```
 
@@ -175,3 +175,16 @@ git config --global user.name your_name
 git config --global user.email your_github_email
 ```
 
+## rofi-wayland issue
+re-generate locale
+
+```bash
+grep -v ^# /etc/locale.gen
+sudo locale-gen
+locale -a
+# should output like below, and match to the /etc/locale.gen
+C
+C.utf8
+en_US.utf8
+POSIX
+```
