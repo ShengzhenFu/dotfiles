@@ -11,7 +11,7 @@ vim.opt.encoding = "utf-8"
 vim.opt.compatible = false
 vim.opt.hlsearch = true
 vim.opt.relativenumber = true
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 vim.opt.vb = true
 vim.opt.ruler = true
 vim.opt.spell = true
@@ -29,17 +29,17 @@ vim.opt.shiftwidth = 3
 
 -- filetype related
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "gitcommit" },
-  callback = function(ev)
-    vim.api.nvim_set_option_value("textwidth", 72, { scope = "local" })
-  end,
+   pattern = { "gitcommit" },
+   callback = function(ev)
+      vim.api.nvim_set_option_value("textwidth", 72, { scope = "local" })
+   end,
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown" },
-  callback = function(ev)
-    vim.api.nvim_set_option_value("textwidth", 0, { scope = "local" })
-    vim.api.nvim_set_option_value("wrapmargin", 0, { scope = "local" })
-    vim.api.nvim_set_option_value("linebreak", true, { scope = "local" })
-  end,
+   pattern = { "markdown" },
+   callback = function(ev)
+      vim.api.nvim_set_option_value("textwidth", 0, { scope = "local" })
+      vim.api.nvim_set_option_value("wrapmargin", 0, { scope = "local" })
+      vim.api.nvim_set_option_value("linebreak", true, { scope = "local" })
+   end,
 })
