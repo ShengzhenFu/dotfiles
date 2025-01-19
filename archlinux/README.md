@@ -146,12 +146,13 @@ sudo systemctl restart docker
 ```
 
 ## packages
-caffeinate - make archlinux awake
-mirage - picture viewer
-xorg-xrandr-git - monitors manager
+caffeinate:      keep archlinux awake
+mirage:          picture viewer
+xorg-xrandr-git: monitors manager
+tartube:         youtube downloader
 
 ```bash
-yay -S --needed visual-studio-code-bin localsend-bin caffeinate mirage xorg-xrandr-git
+yay -S --needed visual-studio-code-bin localsend-bin caffeinate mirage xorg-xrandr-git tartube
 sudo pacman -S yazi ffmpeg p7zip jq poppler fd ripgrep fzf zoxide imagemagick shellcheck
 ```
 
