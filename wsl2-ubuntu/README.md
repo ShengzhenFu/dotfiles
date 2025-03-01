@@ -153,6 +153,9 @@ sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # gcc, required by NVIM tree-sitter
 sudo apt install gcc
+
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
 ```
 
 ### Install Docker on both Windows and Subsystem Ubuntu
