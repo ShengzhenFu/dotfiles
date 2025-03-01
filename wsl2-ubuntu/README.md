@@ -52,6 +52,60 @@ Now we can set default version to 2 via below command
 ```bash
  wsl --set-default-version 2
 ```
+## Install docker on Windows WSL without Docker Desktop
+
+```bash
+sudo apt update -y && sudo apt upgrade -y
+
+sudo apt -y install apt-transport-https ca-certificates curl gnupg lsb-release
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update && sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker.io docker-compose
+
+sudo apt install docker.io docker-compose
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+sudo service docker start
+sudo service docker status
+sudo systemctl enable docker
+```
+
+### Set Alias in Powershell for docker and docker compose
+you should now be able to run 
+
+```bash
+wsl docker --version
+wsl docker compose --version
+```
+Now follow below steps to remove wsl and set alias for docker cli
+
+```bash
+## Enable powershell execution
+Get-ExecutionPolicy -List
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted CurrentUser
+echo $PROFILE
+
+### create file with below content - C:\Users\YourUserName\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
+Function Start-WslDocker {
+    wsl docker $args
+}
+
+Function Start-WslDockerCompose {
+    wsl docker-compose $args
+}
+
+Set-Alias -Name docker -Value Start-WslDocker
+
+Set-Alias -Name docker-compose -Value Start-WslDockerCompose
+```
+
+
 ## Windows Terminal
 I strongly recommand to install Windows Terminal, because it's a good terminal to manage Linux subsystems.
 https://learn.microsoft.com/en-us/windows/terminal/install
