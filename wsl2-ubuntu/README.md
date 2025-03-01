@@ -148,9 +148,9 @@ follow the instructions to setup Powerlevel10k according to your preference
 ### Install Neovim on Ubuntu
 ```bash
 curl -LO https://github.com/neovim/neovim/releases/download/v0.10.4/nvim-linux-x86_64.tar.gz
-sudo tar -C /opt -xzf nvim-linux64.tar.gz
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 # add below line to ~/.zshrc
-export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # gcc, required by NVIM tree-sitter
 sudo apt install gcc
 ```
