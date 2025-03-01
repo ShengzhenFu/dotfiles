@@ -33,7 +33,7 @@ openSUSE-Tumbleweed                    openSUSE Tumbleweed
 
 Choose one distribution from above and install it
 ```bash
-> wsl install -d Ubuntu-24.04
+> wsl --install -d Ubuntu-24.04
 > wsl -l -v
 ```
 Now that the Ubuntu has been installed, you can launch it from the applications, 
