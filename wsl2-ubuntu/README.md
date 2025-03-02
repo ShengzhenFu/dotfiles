@@ -158,7 +158,76 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 ```
 
-### Install Docker on both Windows and Subsystem Ubuntu
+### Install Nerd Fonts
+On Windows 11 Download and install Nerd Fonts from https://github.com/ryanoasis/nerd-fonts/releases/tag/v3.3.0
+
+On WSL Ubuntu 24.04
+
+```bash
+cat << EOF >> nerd-fonts-install.sh
+#!/bin/bash
+
+declare -a fonts=(
+    FiraCode
+    FiraMono
+    Go-Mono
+    Hack
+    JetBrainsMono
+    Meslo
+    SourceCodePro
+    Ubuntu
+    UbuntuMono
+)
+
+version='3.3.0'
+fonts_dir="${HOME}/.local/share/fonts"
+
+if [[ ! -d "$fonts_dir" ]]; then
+    mkdir -p "$fonts_dir"
+fi
+
+for font in "${fonts[@]}"; do
+    zip_file="${font}.zip"
+    download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${zip_file}"
+    echo "Downloading $download_url"
+    wget "$download_url"
+    unzip "$zip_file" -d "$fonts_dir"
+    rm "$zip_file"
+done
+
+find "$fonts_dir" -name '*Windows Compatible*' -delete
+
+fc-cache -fv
+EOF
+
+chmod +x ./nerd-fonts-install.sh
+./nerd-fonts-install.sh
+```
+
+Go to Windows Terminal settings, in the Appereance settings change the font to the nerd font to your preference, eg: JetBrainsMono Nerd Font
+
+In the neovim config (.config/nvim/lua/config/options.lua) add below line
+
+```
+vim.opt.guifont = "JetBrainsMono Nerd Font:h11"
+```
+
+### Install common dev packages on WSL Ubuntu
+
+```bash
+sudo apt install -y \
+  build-essential \
+  make \
+  curl \
+  ca-certificates \
+  postgresql-client-16 \
+  libssl-dev \
+  libxmlsec1-dev \
+  libmagic-dev \
+  libmagickwand-dev
+```
+
+### Install Docker on both Windows and Subsystem Ubuntu with Docker Desktop
 please note it only support WSL version 2, you can follow above to upgrade the WSL subsystem to version 2 before get start with Docker
 
 1. Download Docker Desktop and follow the installation instructions.
