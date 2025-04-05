@@ -227,6 +227,31 @@ sudo apt install -y \
   libmagickwand-dev
 ```
 
+### Set WSL2 to Mirrored network
+By default WSL uses a [NAT based architecture](https://learn.microsoft.com/en-us/windows/wsl/networking#default-networking-mode-nat), and I recommend the [Mirrored Networking](https://learn.microsoft.com/en-us/windows/wsl/networking#mirrored-mode-networking) to get the latest features and improvements.
+To configure Mirrored Networking, created a .wslconfig file in my Windows home directory (C:\Users\<username>) with the following content:
+```plaintext
+[wsl2]
+memory=8GB
+processors=6
+networkingMode=mirrored
+```
+This configuration limits WSL2 to 24GB of RAM, 6 CPU cores, and uses mirrored network mode to simplify VPN and network integration
+
+### Install nodejs and npm on WSL2
+
+```bash
+# Run from WSL 
+sudo apt install nodejs npm
+# Run from Powershell
+wsl --shutdown Ubuntu-24.04
+# Start the WSL again and check if npm installed correctly
+which npm
+which npx
+# then you can try run below command to validate
+npx create-next-app@latest
+```
+
 ### Install Docker on both Windows and Subsystem Ubuntu with Docker Desktop
 please note it only support WSL version 2, you can follow above to upgrade the WSL subsystem to version 2 before get start with Docker
 
