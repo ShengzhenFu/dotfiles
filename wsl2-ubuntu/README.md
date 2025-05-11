@@ -179,7 +179,7 @@ declare -a fonts=(
     UbuntuMono
 )
 
-version='3.3.0'
+version='3.4.0'
 fonts_dir="${HOME}/.local/share/fonts"
 
 if [[ ! -d "$fonts_dir" ]]; then
@@ -250,6 +250,16 @@ which npm
 which npx
 # then you can try run below command to validate
 npx create-next-app@latest
+```
+### Git SSH setup on WSL2
+
+```bash
+ssh-keygen -t ed25519 -C your_email@example.com
+# add ~/.ssh/id_ed25519.pub content to SSH&GPG keys o github console
+git config --global user.email your_email@example.com
+git config --global user.name your_name
+# verify the connection
+ssh -T git@github.com
 ```
 
 ### Install Docker on both Windows and Subsystem Ubuntu with Docker Desktop
