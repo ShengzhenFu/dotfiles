@@ -34,3 +34,6 @@ alias cam='vlc v4l2://:input-slave=alsa://:v4l-vdev="/dev/video0"'
 alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 alias snapshot='hyprshot -m region'
+
+alias myip='curl -s -k https://api.my-ip.io/v2/ip.json | jq '\''{myip: .ip, provider: .asn["name"], country: .country["name"]}'\'
+
