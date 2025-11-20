@@ -23,6 +23,11 @@ vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamed"
 vim.opt.scrollbind = false
 vim.opt.wildmenu = true
+-- wrap long line
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.breakindent = true
+vim.opt.breakindentopt = "shift:2"
 
 vim.opt.tabstop = 3
 vim.opt.shiftwidth = 3
