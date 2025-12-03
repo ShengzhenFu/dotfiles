@@ -52,12 +52,12 @@ main() {
    local bar=""
 
    # Define color codes (ANSI escape sequences)
-   local RED='\033[38;5;196m'
-   local ORANGE='\033[38;5;208m'
-   local YELLOW='\033[38;5;226m'
-   local LIGHT_GREEN='\033[38;5;46m'
-   local GREEN='\033[38;5;34m'
-   local RESET='\033[0m'
+   # local RED='\033[38;5;196m'
+   # local ORANGE='\033[38;5;208m'
+   # local YELLOW='\033[38;5;226m'
+   # local LIGHT_GREEN='\033[38;5;46m'
+   # local GREEN='\033[38;5;34m'
+   # local RESET='\033[0m'
 
    # Create gradient blocks with colors
    # for i in $(seq 1 10); do
@@ -79,18 +79,18 @@ main() {
    # bar="${bar}]"
    # Inside your for loop, replace the color assignment logic:
    for i in $(seq 1 10); do
-      if [ $i -le $filled ]; then
+      if [ "$i" -le $filled ]; then
          # Assign a TMUX color code based on position
-         if [ $i -le 2 ]; then
-            bar="${bar}#[fg=red]◼"
-         elif [ $i -le 4 ]; then
+         if [ "$i" -le 2 ]; then
+            bar="${bar}#[fg=colour160]◼"
+         elif [ "$i" -le 4 ]; then
             bar="${bar}#[fg=colour208]◼" # Orange (208 is a common code)
-         elif [ $i -le 6 ]; then
-            bar="${bar}#[fg=yellow]◼"
-         elif [ $i -le 8 ]; then
-            bar="${bar}#[fg=green]◼"
+         elif [ "$i" -le 6 ]; then
+            bar="${bar}#[fg=cyan]◼"
+         elif [ "$i" -le 8 ]; then
+            bar="${bar}#[fg=colour113]◼"
          else
-            bar="${bar}#[fg=brightgreen]◼"
+            bar="${bar}#[fg=colour76]◼"
          fi
       else
          bar="${bar}◻"
