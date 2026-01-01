@@ -141,4 +141,13 @@ sudo firewall-cmd --list-all
 # gnome extensions
 # URL: https://extensions.gnome.org/extension/1460/vitals/
 # URL: https://extensions.gnome.org/extension/517/caffeine/
+
+# cockpit
+sudo dnf install cockpit
+vim /usr/lib/systemd/system/cockpit.socket
+# update the listener port to 39090
+sudo systemctl start cockpit.socket
+sudo systemctl enable --now cockpit.socket
+sudo firewall-cmd --add-service=cockpit
+sudo firewall-cmd --add-service=cockpit --permanent
 ```
