@@ -166,6 +166,7 @@ sudo firewall-cmd --reload
 sudo firewall-cmd --list-all
 
 # samba
+# https://fedoraproject.org/wiki/Administration_Guide_Draft/Samba
 sudo dnf install samba samba-client
 sudo mkdir -p /data/shares
 sudo useradd -r -M -s /sbin/nologin cloudtea
