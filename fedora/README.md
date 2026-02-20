@@ -121,6 +121,7 @@ alias ipsecui='docker run -d -p 30080:80 --name metacubexd ghcr.io/metacubex/met
 alias ipsec='cd $HOME/.config/mihomo; nohup ./mihomo-linux-amd64-compatible-v1.19.18 > output.log 2>&1 &' 
 alias setproxy='export http_proxy=http://127.0.0.1:7890; export https_proxy=http://127.0.0.1:7890; export all_proxy=http://127.0.0.1:7890'
 
+alias v='nvim'
 alias vz='nvim ~/dotfiles/.config/zshrc'
 alias szh='source ~/.zshrc'
 EOF
@@ -150,4 +151,69 @@ sudo systemctl start cockpit.socket
 sudo systemctl enable --now cockpit.socket
 sudo firewall-cmd --add-service=cockpit
 sudo firewall-cmd --add-service=cockpit --permanent
+
+# fcitx5
+sudo dnf install fcitx5 fcitx5-configtool fcitx5-autostart
+sudo dnf install fcitx5-chinese-addons fcitx5-table-extra
+im-chooser
+
+# VLC
+sudo dnf install vlc
+
+# allow icmp
+sudo firewall-cmd --permanent --remove-icmp-block-inversion
+sudo firewall-cmd --reload
+sudo firewall-cmd --list-all
+
+# samba
+sudo dnf install samba samba-client
+sudo mkdir -p /data/shares
+sudo useradd -r -M -s /sbin/nologin cloudtea
+sudo chown -R cloudtea:cloudtea /data/shares
+sudo smbpasswd -a cloudtea
+# sudo pdbedit -a -u cloudtea
+id cloudtea
+getent passwd cloudtea
+chcon -R -t samba_share_t /data/shares
+sudo semanage fcontext --add --type "samba_share_t" "/data/shares(/.*)?"
+sudo restorecon -R /data/shares
+sudo chmod 777 /data/shares
+
+## disable SELinux
+sudo setenforce 0
+cat <<'EOF' | sudo tee /etc/samba/smb.conf > /dev/null
+[global]
+        server string = Samba Server
+        security = user
+        # workgroup = WORKGROUP
+        # netbios name = system
+        # client max protocol = SMB3
+        # hosts allow = 127. 192.168.0.215
+
+        # log files split per-machine:
+        log file = /var/log/samba/%m.log
+        # maximum size of 50KB per log file, then rotate:
+        max log size = 50
+
+[shares]
+        comment = Shared Directories
+        path = /data/shares
+        browsable = yes
+        public = yes
+        writable = yes
+        create mask = 0660
+        directory mask = 0770
+        valid users = cloudtea
+EOF
+
+# validate smb.conf syntax
+testparm /etc/samba/smb.conf
+sudo firewall-cmd --add-service=samba --permanent
+sudo firewall-cmd --reload
+sudo systemctl start smb --now
+sudo systemctl enable smb
+sudo systemctl start nmb --now
+sudo systemctl enable nmb
+
+sudo smbstatus
 ```
