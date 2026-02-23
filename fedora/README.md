@@ -16,6 +16,10 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOM/plugins/zsh-autocomplete
 
+# pure zsh theme
+mkdir -p "$HOME/.zsh"
+git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+
 cat <<'EOF' | tee -a $HOME/.zshrc
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -30,7 +34,12 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+
+fpath+=($HOME/.zsh/pure)
+autoload -U promptinit; promptinit
+prompt pure
 EOF
+
 
 # install apps
 sudo dnf install keepassxc google-chrome fd fzf curl
