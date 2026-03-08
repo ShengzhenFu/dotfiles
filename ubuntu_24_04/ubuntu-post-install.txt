@@ -1,0 +1,48 @@
+cat /etc/shells
+
+sudo apt install zsh
+sudo apt install zsh-autosuggestions zsh-syntax-highlighting
+
+sudo chsh -s $(which zsh) $USER
+sudo chsh -s /usr/bin/zsh
+
+# oh my zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $ZSH_CUSTOchsh -s /usr/bin/zshM/plugins/zsh-autocomplete
+
+# pure zsh theme
+mkdir -p "$HOME/.zsh"
+git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+
+
+cat <<'EOF' | tee -a $HOME/.zshrc
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete)
+
+fpath+=($HOME/.zsh/pure)
+autoload -U promptinit; promptinit
+prompt pure
+EOF
+
+sudo apt install fzf curl
+
+# reboot Ubuntu to take effect for zsh
+
+# alacritty
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
