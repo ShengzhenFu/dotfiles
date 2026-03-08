@@ -169,6 +169,11 @@ nmcli con mod home_wifi_5g ipv4.dns 192.168.0.3
 nmcli con mod home_wifi_5g ipv4.method manual
 nmcli con up home_wifi_5g
 nmcli con show home_wifi_5g
+
+# change back from static ip to dhcp
+nmcli connection modify home_wifi_5g ipv4.method auto
+nmcli connection down home_wifi_5g
+nmcli connection up home_wifi_5g
 ```
 
 ## github
