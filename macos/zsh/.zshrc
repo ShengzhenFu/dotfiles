@@ -55,6 +55,7 @@ zplug load
 alias vz="nvim ~/.zshrc"
 alias v="nvim"
 alias szh="source ~/.zshrc"
+alias myip=" curl -s https://ip111.cn | grep ' 中国 ' | awk '{print\$1}' "
 
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$PATH:$HOME/.local/bin"
