@@ -42,13 +42,28 @@ EOF
 
 
 # install apps
-sudo dnf install keepassxc google-chrome fd fzf curl
+sudo dnf install keepassxc google-chrome chromium btop fd fzf curl
 # install localsend
 flatpak install flathub org.localsend.localsend_app
 flatpak run org.localsend.localsend_app
 
+# tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+cat <<'EOF' | tee $HOME/.tmux.conf > /dev/null
+# plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'christoomey/vim-tmux-navigator'
+# set -g @plugin 'catppuccin/tmux'
+# set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+run '~/.tmux/plugins/tpm/tpm'
+EOF
+
 # neovim
 # https://www.youtube.com/watch?v=Wj1y_eAhlvc&t=682s
+sudo dnf install -y neovim
 
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
@@ -226,5 +241,16 @@ sudo systemctl enable smb
 sudo systemctl start nmb --now
 sudo systemctl enable nmb
 
+
+# fingerprint login
+# https://fprint.freedesktop.org/supported-devices.html
+sudo dnf install snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap install validity-sensors-tools
+lsusb
+sudo dnf reinstall fprintd libfprint
+sudo systemctl start fprintd.service
+sudo systemctl enable fprintd.service
+fprintd-enroll
 sudo smbstatus
 ```
