@@ -33,13 +33,29 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlightin
 EOF
 
 # install apps
-sudo dnf install keepassxc google-chrome fd fzf curl
+sudo dnf install keepassxc chromium fd fzf curl btop
 # install localsend
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub org.localsend.localsend_app
 flatpak run org.localsend.localsend_app
 
+# tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+cat <<'EOF' | tee $HOME/.tmux.conf > /dev/null
+# plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'christoomey/vim-tmux-navigator'
+# set -g @plugin 'catppuccin/tmux'
+# set -g @plugin 'dreamsofcode-io/catppuccin-tmux'
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+run '~/.tmux/plugins/tpm/tpm'
+EOF
+
 # neovim
 # https://www.youtube.com/watch?v=Wj1y_eAhlvc&t=682s
+sudo dnf install -y neovim
 
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
@@ -47,6 +63,7 @@ rm -rf ~/.config/nvim/.git
 # download font from https://www.nerdfonts.com/font-downloads 
 mkdir ~/.fonts
 copy *.otf ~/.fonts
+fc-cache -fv
 
 sudo dnf install fd fzf
 sudo dnf install @development-tools
@@ -111,8 +128,8 @@ wget https://github.com/MetaCubeX/mihomo/releases/download/v1.19.18/mihomo-linux
 gzip -d mihomo-linux-amd64-compatible-v1.19.18.gz
 chmod +x mihomo-linux-amd64-compatible-v1.19.18
 
-#docker pull ghcr.io/metacubex/metacubexd
-docker load -i $HOME/Downloads/metacubex.tar
+docker pull ghcr.io/metacubex/metacubexd
+# docker load -i $HOME/Downloads/metacubex.tar
 docker run -d -p 30080:80 --name metacubexd ghcr.io/metacubex/metacubexd
 docker run -d --restart always -p 30080:80 --name metacubexd ghcr.io/metacubex/metacubexd
 
@@ -150,4 +167,20 @@ sudo systemctl start cockpit.socket
 sudo systemctl enable --now cockpit.socket
 sudo firewall-cmd --add-service=cockpit
 sudo firewall-cmd --add-service=cockpit --permanent
+
+# fcitx5 Chinese input
+sudo dnf install fcitx5 kcm-fcitx5 fcitx5-chinese-addons fcitx5-autostart fcitx5-configtool fcitx5-gtk fcitx5-qt fcitx5-table-extra fcitx5-rime
+ln -s /usr/share/applications/org.fcitx.Fcitx5.desktop ~/.config/autostart/
+# configure 'input method add pinyin and virtual keyboard add pinyin'
+
+# fingerprint login
+# https://fprint.freedesktop.org/supported-devices.html
+sudo dnf install snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo snap install validity-sensors-tools
+lsusb
+sudo dnf reinstall fprintd libfprint
+sudo systemctl start fprintd.service
+sudo systemctl enable fprintd.service
+fprintd-enroll
 ```
