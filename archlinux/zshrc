@@ -37,3 +37,5 @@ alias snapshot='hyprshot -m region'
 
 alias myip='curl -s -k https://api.my-ip.io/v2/ip.json | jq '\''{myip: .ip, provider: .asn["name"], country: .country["name"]}'\'
 
+alias clipbash='silicon --from-clipboard -l bash --to-clipboard --window-title "Snapshot by Shengzhen"'
+

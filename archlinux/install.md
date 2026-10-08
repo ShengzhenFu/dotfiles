@@ -189,7 +189,7 @@ $ sudo pacman -S gammastep
 $ gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 $ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
-$ sudo pacman -S --needed nodejs npm rust go ruby rubygems php composer lua luarocks python python-pip dotnet-runtime dotnet-sdk julia java-runtime-common java-environment-common jdk-openjdk
+$ sudo pacman -S --needed nodejs npm rust go ruby rubygems php composer lua luarocks python python-pip dotnet-runtime dotnet-sdk julia java-runtime-common java-environment-common jdk-openjdk silicon
 
 $ yay -S pfetch hyprshot
 $ sudo pacman -S fd ripgrep bat eza tree-sitter tree-sitter-cli inetutils
